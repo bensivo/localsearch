@@ -1,5 +1,8 @@
 asyncio==3.4.3
+Faker==24.8.0
 grpcio==1.62.1
 grpcio-tools==1.62.1
 -e ../grpc-python
 protobuf==4.25.3
+python-dateutil==2.9.0.post0
+six==1.16.0

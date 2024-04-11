@@ -5,6 +5,9 @@ import logging
 import grpc
 import localsearch_pb2
 import localsearch_pb2_grpc
+from faker import Faker
+
+fake = Faker()
 
 def b64encode(s):
     s_bytes = s.encode("utf-8")
@@ -15,8 +18,8 @@ async def main():
         stub = localsearch_pb2_grpc.LocalsearchStub(channel)
 
         request_id = str(uuid.uuid4())
-        document_id = "greetings"
-        contents = "Hello, world!"
+        document_id = fake.isbn10()
+        contents = fake.text()
 
         logging.info(f'REQ-> InsertDocument:{request_id} "{contents}"')
         req = localsearch_pb2.InsertDocumentRequest(
