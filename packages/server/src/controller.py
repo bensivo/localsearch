@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from concurrent import futures
 from tokenization import Tokenizer
 from document_store import DocumentStore
-from utils import b64decode
+from utils import b64decode, b64encode
 import random
 import grpc
 import localsearch_pb2
@@ -32,7 +32,7 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
 
     async def InsertDocument(self, request, context):
         """
-        Implements the LocalsearchService grpc service
+        Insert a document into the store, and the index
         """
         logging.info(f'->REQ InsertDocument:{request.request_id}')
 
@@ -49,6 +49,32 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
             response_code = 0,
         )
         logging.info(f'<-RES InsertDocument:{res.request_id} - {res.response_code}')
+        return res
+    
+    async def GetDocument(self, request, context):
+        """
+        Get a document from the store, returning the raw document contents as base64
+        """
+        logging.info(f'->REQ InsertDocument:{request.request_id}')
+
+        logging.info(f'Getting document: {request.document_id}')
+        content = self.document_store.get(request.document_id)
+
+        if content is None:
+            logging.warn(f'Document not found: {request.document_id}')
+            res = localsearch_pb2.GetDocumentResponse(
+                request_id = request.request_id,
+                response_code = 1,
+                contents_base64='',
+            )
+        else:
+            logging.info(f'Document: {request.document_id} fetched successfully')
+            res = localsearch_pb2.GetDocumentResponse(
+                request_id = request.request_id,
+                response_code = 0,
+                contents_base64=b64encode(content),
+            )
+        logging.info(f'<-RES InsertDocument:{res.request_id} - {res.response_code} {res.contents_base64}')
         return res
 
 

@@ -19,12 +19,23 @@ class LocalsearchStub(object):
                 request_serializer=localsearch__pb2.InsertDocumentRequest.SerializeToString,
                 response_deserializer=localsearch__pb2.InsertDocumentResponse.FromString,
                 )
+        self.GetDocument = channel.unary_unary(
+                '/localsearch.Localsearch/GetDocument',
+                request_serializer=localsearch__pb2.GetDocumentRequest.SerializeToString,
+                response_deserializer=localsearch__pb2.GetDocumentResponse.FromString,
+                )
 
 
 class LocalsearchServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def InsertDocument(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDocument(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_LocalsearchServicer_to_server(servicer, server):
                     servicer.InsertDocument,
                     request_deserializer=localsearch__pb2.InsertDocumentRequest.FromString,
                     response_serializer=localsearch__pb2.InsertDocumentResponse.SerializeToString,
+            ),
+            'GetDocument': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDocument,
+                    request_deserializer=localsearch__pb2.GetDocumentRequest.FromString,
+                    response_serializer=localsearch__pb2.GetDocumentResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class Localsearch(object):
         return grpc.experimental.unary_unary(request, target, '/localsearch.Localsearch/InsertDocument',
             localsearch__pb2.InsertDocumentRequest.SerializeToString,
             localsearch__pb2.InsertDocumentResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDocument(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/localsearch.Localsearch/GetDocument',
+            localsearch__pb2.GetDocumentRequest.SerializeToString,
+            localsearch__pb2.GetDocumentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -21,3 +21,21 @@ class InsertDocumentResponse(_message.Message):
     request_id: str
     response_code: int
     def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ...) -> None: ...
+
+class GetDocumentRequest(_message.Message):
+    __slots__ = ("request_id", "document_id")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    DOCUMENT_ID_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    document_id: str
+    def __init__(self, request_id: _Optional[str] = ..., document_id: _Optional[str] = ...) -> None: ...
+
+class GetDocumentResponse(_message.Message):
+    __slots__ = ("request_id", "response_code", "contents_base64")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    RESPONSE_CODE_FIELD_NUMBER: _ClassVar[int]
+    CONTENTS_BASE64_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    response_code: int
+    contents_base64: str
+    def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ..., contents_base64: _Optional[str] = ...) -> None: ...

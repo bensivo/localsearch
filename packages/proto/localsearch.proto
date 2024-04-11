@@ -4,6 +4,8 @@ package localsearch;
 
 service Localsearch{
     rpc InsertDocument(InsertDocumentRequest) returns (InsertDocumentResponse) {}
+
+    rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {}
 }
 
 message InsertDocumentRequest {
@@ -15,5 +17,16 @@ message InsertDocumentRequest {
 message InsertDocumentResponse {
     string request_id = 1;
     uint32 response_code = 2;
+}
+
+message GetDocumentRequest {
+    string request_id = 1;
+    string document_id = 2;
+}
+
+message GetDocumentResponse {
+    string request_id = 1;
+    uint32 response_code = 2;
+    string contents_base64 = 3;
 }
 

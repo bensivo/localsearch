@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11localsearch.proto\x12\x0blocalsearch\"Y\n\x15InsertDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"C\n\x16InsertDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r2j\n\x0bLocalsearch\x12[\n\x0eInsertDocument\x12\".localsearch.InsertDocumentRequest\x1a#.localsearch.InsertDocumentResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11localsearch.proto\x12\x0blocalsearch\"Y\n\x15InsertDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"C\n\x16InsertDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\"=\n\x12GetDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\"Y\n\x13GetDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t2\xbe\x01\n\x0bLocalsearch\x12[\n\x0eInsertDocument\x12\".localsearch.InsertDocumentRequest\x1a#.localsearch.InsertDocumentResponse\"\x00\x12R\n\x0bGetDocument\x12\x1f.localsearch.GetDocumentRequest\x1a .localsearch.GetDocumentResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -25,6 +25,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_INSERTDOCUMENTREQUEST']._serialized_end=123
   _globals['_INSERTDOCUMENTRESPONSE']._serialized_start=125
   _globals['_INSERTDOCUMENTRESPONSE']._serialized_end=192
-  _globals['_LOCALSEARCH']._serialized_start=194
-  _globals['_LOCALSEARCH']._serialized_end=300
+  _globals['_GETDOCUMENTREQUEST']._serialized_start=194
+  _globals['_GETDOCUMENTREQUEST']._serialized_end=255
+  _globals['_GETDOCUMENTRESPONSE']._serialized_start=257
+  _globals['_GETDOCUMENTRESPONSE']._serialized_end=346
+  _globals['_LOCALSEARCH']._serialized_start=349
+  _globals['_LOCALSEARCH']._serialized_end=539
 # @@protoc_insertion_point(module_scope)

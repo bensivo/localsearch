@@ -15,6 +15,10 @@ class DocumentStore(ABC):
     def save(self, document_id, contents):
         pass
 
+    @abstractmethod
+    def get(self, document_id, contents):
+        pass
+
 class FileDocumentStore(DocumentStore):
     """
     Implementation of DocumentStore using a folder in the local filesystem.
@@ -31,3 +35,9 @@ class FileDocumentStore(DocumentStore):
     def save(self, document_id, contents):
         with open(f'{self.base_dir}/{document_id}.txt', 'w') as file:
             file.write(contents)
+
+    def get(self, document_id):
+        with open(f'{self.base_dir}/{document_id}.txt', 'r') as file:
+            contents = file.read()
+
+        return contents
