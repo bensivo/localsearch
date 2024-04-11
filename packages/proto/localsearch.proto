@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package localsearch;
+
+service Localsearch{
+    rpc InsertDocument(InsertDocumentRequest) returns (InsertDocumentResponse) {}
+}
+
+message InsertDocumentRequest {
+    string request_id = 1;
+    string document_id = 2;
+    string contents_base64 = 3;
+}
+
+message InsertDocumentResponse {
+    string request_id = 1;
+    uint32 response_code = 2;
+}
+
