@@ -5,6 +5,7 @@ grpcio-tools==1.62.1
 joblib==1.4.0
 -e ../grpc-python
 nltk==3.8.1
+numpy==1.26.4
 protobuf==4.25.3
 regex==2023.12.25
 tqdm==4.66.2

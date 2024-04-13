@@ -6,6 +6,8 @@ service Localsearch{
     rpc InsertDocument(InsertDocumentRequest) returns (InsertDocumentResponse) {}
 
     rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {}
+
+    rpc Query(QueryRequest) returns (QueryResponse) {}
 }
 
 message InsertDocumentRequest {
@@ -30,3 +32,18 @@ message GetDocumentResponse {
     string contents_base64 = 3;
 }
 
+message QueryRequest {
+    string request_id = 1;
+    string query = 2;
+}
+
+message QueryResponse {
+    string request_id = 1;
+    uint32 response_code = 2;
+    repeated DocumentScore document_scores = 3;
+}
+
+message DocumentScore {
+    string document_id = 1;
+    float score = 2;
+}

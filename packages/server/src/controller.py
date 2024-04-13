@@ -1,3 +1,4 @@
+import numpy as np
 from abc import ABC, abstractmethod
 from concurrent import futures
 from tokenizer import Tokenizer
@@ -84,6 +85,42 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
                 contents_base64=b64encode(content),
             )
         logging.info(f'<-RES InsertDocument:{res.request_id} - {res.response_code} {res.contents_base64}')
+        return res
+    
+    async def Query(self, request, context):
+        logging.info(f'->REQ Query:{request.request_id}')
+
+        # Calculate tf-vector for the query itself
+        terms = self.tf_index.get_terms()
+        query_terms = self.tokenizer.get_tf_dict(request.query)
+        query_tf_vector = np.array([query_terms.get(term, 0) for term in terms])
+
+        document_scores = []
+
+        # Calculate tf-vectors for each document
+        document_ids = self.document_store.list_documents()
+        for document_id in document_ids:
+
+            # Calculate similarity for each doc
+            tf_vector = np.array(self.tf_index.get_term_vector(document_id))
+
+            similarity = np.dot(query_tf_vector, tf_vector) / (np.linalg.norm(query_tf_vector) * np.linalg.norm(tf_vector))
+            logging.debug(f'Cosine Similarity between query and {document_id}: {similarity}')
+
+            document_scores.append(localsearch_pb2.DocumentScore(
+                document_id = document_id,
+                score = similarity,
+            ))
+
+        # Sort by similarity, returning doc ids
+        document_scores.sort(key=lambda x: x.score, reverse=True)
+
+        res = localsearch_pb2.QueryResponse(
+            request_id = request.request_id,
+            response_code = 0,
+            document_scores = document_scores
+        )
+        logging.info(f'<-RES Query:{res.request_id} - {res.response_code}')
         return res
 
 

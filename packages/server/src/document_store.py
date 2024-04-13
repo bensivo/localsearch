@@ -19,6 +19,10 @@ class DocumentStore(ABC):
     def get(self, document_id, contents):
         pass
 
+    @abstractmethod
+    def list_documents(self):
+        pass
+
 class FileDocumentStore(DocumentStore):
     """
     Implementation of DocumentStore using a folder in the local filesystem.
@@ -41,3 +45,8 @@ class FileDocumentStore(DocumentStore):
             contents = file.read()
 
         return contents
+
+    def list_documents(self):
+        filenames = os.listdir(self.base_dir)
+        return [f.replace('.txt', '') for f in filenames if f.endswith('.txt')]
+
