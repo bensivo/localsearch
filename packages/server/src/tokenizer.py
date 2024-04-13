@@ -10,7 +10,7 @@ class Tokenizer():
         nltk.download('popular', download_dir='./data/nltk')
 
 
-    def tokenize(self, text: str):
+    def get_tf_dict(self, text: str):
         """
         Use NLTK to tokenize the given text file.
         Makes all tokens lowercase, and performs basic stop-word removal.
@@ -32,3 +32,4 @@ class Tokenizer():
         freq_dist = FreqDist(tokens)
         tf = dict(freq_dist)
         return tf
+    

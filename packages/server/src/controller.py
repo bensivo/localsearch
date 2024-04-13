@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from concurrent import futures
-from tokenization import Tokenizer
+from tokenizer import Tokenizer
+from tf_index import TFIndex
 from document_store import DocumentStore
 from utils import b64decode, b64encode
 import random
@@ -25,10 +26,11 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
     Exposes localsearch functions via a GRPC server
     """
 
-    def __init__(self, port: int, tokenizer: Tokenizer, document_store: DocumentStore):
+    def __init__(self, port: int, tokenizer: Tokenizer, document_store: DocumentStore, tf_index: TFIndex):
         self.port = port
         self.tokenizer = tokenizer
         self.document_store = document_store
+        self.tf_index = tf_index
 
     async def InsertDocument(self, request, context):
         """
@@ -41,8 +43,15 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
         logging.info(f'Saving document: {request.document_id}')
         self.document_store.save(request.document_id, content)
 
-        tokens = self.tokenizer.tokenize(content)
-        logging.debug(f'Tokens for document {request.document_id}: {tokens}')
+        tf_dict = self.tokenizer.get_tf_dict(content)
+        logging.debug(f'Tokens for document {request.document_id}: {tf_dict}')
+
+        logging.info(f'Inserting tokens for document {request.document_id} into tf_index')
+        for token in tf_dict:
+            self.tf_index.save_term_frequency(token, request.document_id, tf_dict[token])
+
+        logging.info(f'Terms: {self.tf_index.get_terms()}')
+        logging.info(f'TF Vector: {self.tf_index.get_term_vector(request.document_id)}')
 
         res = localsearch_pb2.InsertDocumentResponse(
             request_id = request.request_id,

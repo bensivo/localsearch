@@ -1,0 +1,18 @@
+Features:
+[x] Insert, Get Document
+[x] Tokenize Document on Insert
+[x] Create TF inverted index, update on Insert
+[ ] Query documents, using basic euclidean distance of TF vectors
+[ ] Query documents, using BM25 ranking function
+[ ] Basic UI for managing docs, querying docs
+[ ] Performance / Stress testing
+
+Tech Debt:
+[ ] refactoring: implement service layer, so we can invoke core functions directly, without a GRPC controller
+[ ] tf_index: implement better persistence, not just 1 giant JSON file
+[ ] tf_index: batch writing results to file
+[ ] tokenizer: try different options, different datasets, etc.
+
+Additional Features:
+[ ] InsertMany documents at once
+[ ]

@@ -2,7 +2,8 @@ import asyncio
 import logging
 
 from controller import GrpcController
-from tokenization import Tokenizer
+from tokenizer import Tokenizer
+from tf_index import FileTFIndex
 from document_store import FileDocumentStore
 
 
@@ -18,11 +19,18 @@ async def main():
     )
     document_store.init()
 
+    tf_index = FileTFIndex(
+        filepath='./data/tf_index.json'
+    )
+    tf_index.init()
+
     controller = GrpcController(
         port = 50051,
         tokenizer = tokenizer,
         document_store = document_store,
+        tf_index = tf_index
     )
+
     await controller.start()
 
 

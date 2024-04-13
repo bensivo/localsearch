@@ -3,3 +3,4 @@ __pycache__/
 *.egg-info/
 packages/server/data/nltk/
 packages/server/data/documents/
+packages/server/data/tf_index.json
