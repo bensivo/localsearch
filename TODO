@@ -7,7 +7,8 @@ Features:
 [ ] GRPC Gateway, so we can use HTTP to hit the grpc service
 [ ] Basic UI for managing docs, querying docs
 [ ] Performance / Stress testing
-[ ] E2E Test suite, inside docker compose
+[x] E2E Test suite
+[ ] Run server and e2e test suite in 2 docker containers
 [ ] Cranfield test suite, for evaluating doc ranking performance
 [ ] Design docs
 
