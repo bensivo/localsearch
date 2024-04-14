@@ -1,0 +1,11 @@
+version: '3.4'
+
+tasks:
+  install:
+    cmds:
+      - python -m venv ./venv
+      - ./venv/bin/pip install -r requirements.txt
+
+  run:
+    cmds:
+      - ./venv/bin/pytest
