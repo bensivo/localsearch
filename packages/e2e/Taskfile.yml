@@ -1,19 +1,19 @@
 version: '3.4'
 
 includes:
-  localsearch_grpc: 
-    taskfile: ../localsearch_grpc/Taskfile.yml
-    dir: ../localsearch_grpc
+  grpc: 
+    taskfile: ../grpc/Taskfile.yml
+    dir: ../grpc
     internal: true
-  localsearch_server: 
-    taskfile: ../localsearch_server/Taskfile.yml
-    dir: ../localsearch_server
+  server: 
+    taskfile: ../server/Taskfile.yml
+    dir: ../server
     internal: true
 
 tasks:
   install:
     cmds:
-      - task: localsearch_grpc:build
+      - task: grpc:build
       - rm -rf ./deps && mkdir ./deps
       - cp ../../dist/localsearch_grpc-0.0.0-py3-none-any.whl ./deps
       - poetry install
@@ -30,7 +30,7 @@ tasks:
 
   docker-run:
     cmds:
-      - task: localsearch_server:docker
+      - task: server:docker
       - task: docker
       - docker run --net localsearch -e LOCALSEARCH_SERVER=localsearch-server --name localsearch-e2e localsearch-e2e 
       - docker rm -f localsearch-server localsearch-e2e

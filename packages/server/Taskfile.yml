@@ -1,15 +1,15 @@
 version: '3.4'
 
 includes:
-  localsearch_grpc: 
-    taskfile: ../localsearch_grpc/Taskfile.yml
-    dir: ../localsearch_grpc
+  grpc: 
+    taskfile: ../grpc/Taskfile.yml
+    dir: ../grpc
     internal: true
 
 tasks:
   install:
     cmds:
-      - task: localsearch_grpc:build
+      - task: grpc:build
       - rm -rf ./deps
       - mkdir ./deps
       - cp ../../dist/localsearch_grpc-0.0.0-py3-none-any.whl ./deps
