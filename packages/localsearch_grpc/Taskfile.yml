@@ -8,7 +8,7 @@ tasks:
   generate:
     cmds:
       - task: install
-      - poetry run python -m grpc_tools.protoc -I../proto --python_out=./localsearch_grpc --pyi_out=./localsearch_grpc --grpc_python_out=./localsearch_grpc ../proto/localsearch.proto
+      - poetry run python -m grpc_tools.protoc -I../localsearch_proto --python_out=./localsearch_grpc --pyi_out=./localsearch_grpc --grpc_python_out=./localsearch_grpc ../localsearch_proto/localsearch.proto
 
       # See: https://github.com/protocolbuffers/protobuf/issues/2283 and https://github.com/protocolbuffers/protobuf/issues/7061
       # Protoc generates a flat folder of files, assuming that the root of the that folder is importable from the rest of the project.
@@ -18,4 +18,5 @@ tasks:
   
   build:
     cmds:
-      - poetry build -o ../../dist/localsearch_grpc
+      - task: generate
+      - poetry build -o ../../dist

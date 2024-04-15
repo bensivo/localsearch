@@ -7,7 +7,8 @@ import string
 
 class Tokenizer():
     def init(self):
-        nltk.download('popular', download_dir='./data/nltk')
+        nltk.download('popular')
+        nltk.download('stopwords')
 
 
     def get_tf_dict(self, text: str):

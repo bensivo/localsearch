@@ -1,3 +1,4 @@
+import os
 from faker import Faker
 import base64
 import uuid
@@ -8,7 +9,8 @@ from localsearch_grpc import localsearch_pb2_grpc
 fake = Faker()
 
 def connect_grpc():
-    channel = grpc.insecure_channel('localhost:50051')
+    host = os.environ['LOCALSEARCH_SERVER']
+    channel = grpc.insecure_channel(f'{host}:50051')
     stub = localsearch_pb2_grpc.LocalsearchStub(channel)
     return stub
 

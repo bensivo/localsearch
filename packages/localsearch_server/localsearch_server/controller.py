@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
 from concurrent import futures
-from document_store import DocumentStore
 from localsearch_grpc import localsearch_pb2
 from localsearch_grpc import localsearch_pb2_grpc
-from tf_index import TFIndex
-from tokenizer import Tokenizer
-from utils import b64decode, b64encode
 import grpc
 import logging
 import numpy as np
 import random
+
+from localsearch_server.document_store import DocumentStore
+from localsearch_server.tf_index import TFIndex
+from localsearch_server.tokenizer import Tokenizer
+from localsearch_server.utils import b64decode, b64encode
 
 
 class Controller(ABC):

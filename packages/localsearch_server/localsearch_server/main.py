@@ -1,10 +1,10 @@
 import asyncio
 import logging
 
-from controller import GrpcController
-from tokenizer import Tokenizer
-from tf_index import FileTFIndex
-from document_store import FileDocumentStore
+from localsearch_server.controller import GrpcController
+from localsearch_server.tokenizer import Tokenizer
+from localsearch_server.tf_index import FileTFIndex
+from localsearch_server.document_store import FileDocumentStore
 
 
 async def main():

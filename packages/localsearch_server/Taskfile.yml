@@ -1,0 +1,30 @@
+version: '3.4'
+
+includes:
+  localsearch_grpc: 
+    taskfile: ../localsearch_grpc/Taskfile.yml
+    dir: ../localsearch_grpc
+    internal: true
+
+tasks:
+  install:
+    cmds:
+      - task: localsearch_grpc:build
+      - rm -rf ./deps
+      - mkdir ./deps
+      - cp ../../dist/localsearch_grpc-0.0.0-py3-none-any.whl ./deps
+      - poetry install
+
+  run:
+    cmds:
+      - poetry run python -m localsearch_server.main
+
+  docker:
+    cmds:
+      - task: install
+      - docker build -t localsearch-server .
+  
+  docker-run:
+    cmds:
+      - task: docker
+      - docker run -p 50051:50051 localsearch-server

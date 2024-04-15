@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "e2e"
-version = "0.1.0"
+name = "localsearch_server"
+version = "0.0.0"
 description = ""
 authors = ["Ben Sivoravong <bensivo@gmail.com>"]
 readme = "README.md"
@@ -9,10 +9,10 @@ readme = "README.md"
 python = "^3.10"
 asyncio = "^3.4.3"
 grpcio = "^1.62.1"
+nltk = "^3.8.1"
+numpy = "^1.26.4"
 protobuf = "^4.25.3"
-localsearch_grpc = {path = "../localsearch_grpc", develop=true}
-pytest = "^8.1.1"
-faker = "^24.9.0"
+localsearch_grpc = {file = "./deps/localsearch_grpc-0.0.0-py3-none-any.whl"}
 
 [build-system]
 requires = ["poetry-core"]

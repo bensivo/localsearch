@@ -116,21 +116,22 @@ files = [
 ]
 
 [[package]]
-name = "localsearch-grpc"
+name = "localsearch_grpc"
 version = "0.0.0"
 description = ""
 optional = false
-python-versions = "^3.10"
-files = []
-develop = true
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "localsearch_grpc-0.0.0-py3-none-any.whl", hash = "sha256:1f046ff5d2ba651cdfdd17efd56a8315f1c64d31f1f1683ab5c768ce767d360c"},
+]
 
 [package.dependencies]
-grpcio = "^1.62.1"
-protobuf = "^4.25.3"
+grpcio = ">=1.62.1,<2.0.0"
+protobuf = ">=4.25.3,<5.0.0"
 
 [package.source]
-type = "directory"
-url = "../localsearch_grpc"
+type = "file"
+url = "deps/localsearch_grpc-0.0.0-py3-none-any.whl"
 
 [[package]]
 name = "nltk"
@@ -347,4 +348,4 @@ telegram = ["requests"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "df969f67016eb947425f578abf4d7afbdbf8129a372b30dd9961a9aae4db076a"
+content-hash = "0dc5a43643ee8fa1278f7485a14c7a8e648097a35640195e154c42cb0bbdc800"

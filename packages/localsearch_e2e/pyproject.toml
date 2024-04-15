@@ -1,21 +1,19 @@
 [tool.poetry]
-name = "localsearch-server"
-version = "0.0.0"
+name = "localsearch-e2e"
+version = "0.1.0"
 description = ""
 authors = ["Ben Sivoravong <bensivo@gmail.com>"]
 readme = "README.md"
-package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
 asyncio = "^3.4.3"
 grpcio = "^1.62.1"
-nltk = "^3.8.1"
-numpy = "^1.26.4"
 protobuf = "^4.25.3"
+pytest = "^8.1.1"
+faker = "^24.9.0"
+localsearch_grpc = {file = "./deps/localsearch_grpc-0.0.0-py3-none-any.whl"}
 
-[tool.poetry.group.dev.dependencies]
-localsearch_grpc = {path = "../localsearch_grpc", develop=true}
 
 
 [build-system]
