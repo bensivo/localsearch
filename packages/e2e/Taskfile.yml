@@ -1,11 +1,17 @@
 version: '3.4'
 
+includes:
+  localsearch_grpc: 
+    taskfile: ../localsearch_grpc/Taskfile.yml
+    dir: ../localsearch_grpc
+    internal: true
+
 tasks:
   install:
     cmds:
-      - python -m venv ./venv
-      - ./venv/bin/pip install -r requirements.txt
+      - task: localsearch_grpc.build
+      - poetry install
 
   run:
     cmds:
-      - ./venv/bin/pytest
+      - poetry run pytest

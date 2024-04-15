@@ -2,8 +2,8 @@ from faker import Faker
 import base64
 import uuid
 import grpc
-import localsearch_pb2
-import localsearch_pb2_grpc
+from localsearch_grpc import localsearch_pb2
+from localsearch_grpc import localsearch_pb2_grpc
 
 fake = Faker()
 

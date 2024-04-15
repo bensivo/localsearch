@@ -1,14 +1,15 @@
 version: '3.4'
 
 includes:
-  grpc-python: 
-    taskfile: ../grpc-python/Taskfile.yml
-    dir: ../grpc-python
+  localsearch_grpc: 
+    taskfile: ../localsearch_grpc/Taskfile.yml
+    dir: ../localsearch_grpc
     internal: true
 
 tasks:
   install:
     cmds:
+      - task: localsearch_grpc.build
       - poetry install
   run:
     cmds:

@@ -109,7 +109,7 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
             similarity = np.dot(query_tf_vector, tf_vector) / (np.linalg.norm(query_tf_vector) * np.linalg.norm(tf_vector))
             logging.debug(f'Cosine Similarity between query and {document_id}: {similarity}')
 
-            document_scores.append(DocumentScore(
+            document_scores.append(localsearch_pb2.DocumentScore(
                 document_id = document_id,
                 score = similarity,
             ))

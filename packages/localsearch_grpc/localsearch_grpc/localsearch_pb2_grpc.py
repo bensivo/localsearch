@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from localsearch_grpc import localsearch_pb2 as localsearch__grpc_dot_localsearch__pb2
+from . import localsearch_pb2 as localsearch__pb2
 
 
 class LocalsearchStub(object):
@@ -16,18 +16,18 @@ class LocalsearchStub(object):
         """
         self.InsertDocument = channel.unary_unary(
                 '/localsearch.Localsearch/InsertDocument',
-                request_serializer=localsearch__grpc_dot_localsearch__pb2.InsertDocumentRequest.SerializeToString,
-                response_deserializer=localsearch__grpc_dot_localsearch__pb2.InsertDocumentResponse.FromString,
+                request_serializer=localsearch__pb2.InsertDocumentRequest.SerializeToString,
+                response_deserializer=localsearch__pb2.InsertDocumentResponse.FromString,
                 )
         self.GetDocument = channel.unary_unary(
                 '/localsearch.Localsearch/GetDocument',
-                request_serializer=localsearch__grpc_dot_localsearch__pb2.GetDocumentRequest.SerializeToString,
-                response_deserializer=localsearch__grpc_dot_localsearch__pb2.GetDocumentResponse.FromString,
+                request_serializer=localsearch__pb2.GetDocumentRequest.SerializeToString,
+                response_deserializer=localsearch__pb2.GetDocumentResponse.FromString,
                 )
         self.Query = channel.unary_unary(
                 '/localsearch.Localsearch/Query',
-                request_serializer=localsearch__grpc_dot_localsearch__pb2.QueryRequest.SerializeToString,
-                response_deserializer=localsearch__grpc_dot_localsearch__pb2.QueryResponse.FromString,
+                request_serializer=localsearch__pb2.QueryRequest.SerializeToString,
+                response_deserializer=localsearch__pb2.QueryResponse.FromString,
                 )
 
 
@@ -57,18 +57,18 @@ def add_LocalsearchServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'InsertDocument': grpc.unary_unary_rpc_method_handler(
                     servicer.InsertDocument,
-                    request_deserializer=localsearch__grpc_dot_localsearch__pb2.InsertDocumentRequest.FromString,
-                    response_serializer=localsearch__grpc_dot_localsearch__pb2.InsertDocumentResponse.SerializeToString,
+                    request_deserializer=localsearch__pb2.InsertDocumentRequest.FromString,
+                    response_serializer=localsearch__pb2.InsertDocumentResponse.SerializeToString,
             ),
             'GetDocument': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDocument,
-                    request_deserializer=localsearch__grpc_dot_localsearch__pb2.GetDocumentRequest.FromString,
-                    response_serializer=localsearch__grpc_dot_localsearch__pb2.GetDocumentResponse.SerializeToString,
+                    request_deserializer=localsearch__pb2.GetDocumentRequest.FromString,
+                    response_serializer=localsearch__pb2.GetDocumentResponse.SerializeToString,
             ),
             'Query': grpc.unary_unary_rpc_method_handler(
                     servicer.Query,
-                    request_deserializer=localsearch__grpc_dot_localsearch__pb2.QueryRequest.FromString,
-                    response_serializer=localsearch__grpc_dot_localsearch__pb2.QueryResponse.SerializeToString,
+                    request_deserializer=localsearch__pb2.QueryRequest.FromString,
+                    response_serializer=localsearch__pb2.QueryResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -92,8 +92,8 @@ class Localsearch(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/localsearch.Localsearch/InsertDocument',
-            localsearch__grpc_dot_localsearch__pb2.InsertDocumentRequest.SerializeToString,
-            localsearch__grpc_dot_localsearch__pb2.InsertDocumentResponse.FromString,
+            localsearch__pb2.InsertDocumentRequest.SerializeToString,
+            localsearch__pb2.InsertDocumentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -109,8 +109,8 @@ class Localsearch(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/localsearch.Localsearch/GetDocument',
-            localsearch__grpc_dot_localsearch__pb2.GetDocumentRequest.SerializeToString,
-            localsearch__grpc_dot_localsearch__pb2.GetDocumentResponse.FromString,
+            localsearch__pb2.GetDocumentRequest.SerializeToString,
+            localsearch__pb2.GetDocumentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -126,7 +126,7 @@ class Localsearch(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/localsearch.Localsearch/Query',
-            localsearch__grpc_dot_localsearch__pb2.QueryRequest.SerializeToString,
-            localsearch__grpc_dot_localsearch__pb2.QueryResponse.FromString,
+            localsearch__pb2.QueryRequest.SerializeToString,
+            localsearch__pb2.QueryResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
