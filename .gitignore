@@ -4,3 +4,4 @@ __pycache__/
 packages/server/data/nltk/
 packages/server/data/documents/
 packages/server/data/tf_index.json
+dist/

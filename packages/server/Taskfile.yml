@@ -1,10 +1,15 @@
 version: '3.4'
 
+includes:
+  grpc-python: 
+    taskfile: ../grpc-python/Taskfile.yml
+    dir: ../grpc-python
+    internal: true
+
 tasks:
   install:
     cmds:
-      - python -m venv ./venv
-      - ./venv/bin/pip install -r requirements.txt
+      - poetry install
   run:
     cmds:
-      - ./venv/bin/python ./src/main.py
+      - poetry run python ./src/main.py

@@ -1,15 +1,16 @@
-import numpy as np
 from abc import ABC, abstractmethod
 from concurrent import futures
-from tokenizer import Tokenizer
-from tf_index import TFIndex
 from document_store import DocumentStore
+from localsearch_grpc import localsearch_pb2
+from localsearch_grpc import localsearch_pb2_grpc
+from tf_index import TFIndex
+from tokenizer import Tokenizer
 from utils import b64decode, b64encode
-import random
 import grpc
-import localsearch_pb2
-import localsearch_pb2_grpc
 import logging
+import numpy as np
+import random
+
 
 class Controller(ABC):
     """
@@ -22,6 +23,7 @@ class Controller(ABC):
     async def start(self):
         pass
 
+# class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
 class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
     """
     Exposes localsearch functions via a GRPC server
@@ -107,7 +109,7 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
             similarity = np.dot(query_tf_vector, tf_vector) / (np.linalg.norm(query_tf_vector) * np.linalg.norm(tf_vector))
             logging.debug(f'Cosine Similarity between query and {document_id}: {similarity}')
 
-            document_scores.append(localsearch_pb2.DocumentScore(
+            document_scores.append(DocumentScore(
                 document_id = document_id,
                 score = similarity,
             ))

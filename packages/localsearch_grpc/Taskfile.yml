@@ -1,0 +1,16 @@
+version: '3.4'
+
+tasks:
+  install:
+    cmds:
+      - poetry install
+    
+  generate:
+    cmds:
+      # NOTE: grpcio-tools assumes the folder structore of out 'proto' folder matches the folder structure we want in out generated python.
+      # Because of poetry's packaging system, we have an additional folder in this directory called localsearch_grpc, so we must match that in our proto.
+      - poetry run python -m grpc_tools.protoc -I../proto --python_out=./ --pyi_out=./ --grpc_python_out=./ ../proto/localsearch_grpc/localsearch.proto
+  
+  build:
+    cmds:
+      - poetry build -o ../../dist/localsearch_grpc

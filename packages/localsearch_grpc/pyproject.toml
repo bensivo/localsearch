@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "localsearch_grpc"
+version = "0.0.0"
+description = ""
+authors = ["Ben Sivoravong <bensivo@gmail.com>"]
+readme = "README.md"
+package-mode = true
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+grpcio = "^1.62.1"
+protobuf = "^4.25.3"
+
+[tool.poetry.group.dev.dependencies]
+grpcio-tools = "^1.62.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

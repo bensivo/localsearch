@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "localsearch-server"
+version = "0.0.0"
+description = ""
+authors = ["Ben Sivoravong <bensivo@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asyncio = "^3.4.3"
+grpcio = "^1.62.1"
+nltk = "^3.8.1"
+numpy = "^1.26.4"
+protobuf = "^4.25.3"
+
+[tool.poetry.group.dev.dependencies]
+localsearch_grpc = {path = "../localsearch_grpc", develop=true}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
