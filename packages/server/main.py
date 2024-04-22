@@ -6,6 +6,13 @@ from nltk.corpus import stopwords
 from nltk.probability import FreqDist
 import string
 
+from localsearch_server.tf_index import InMemoryTFIndex
+from localsearch_server.tf_inverted_index import InMemoryTFInvertedIndex
+from localsearch_server.document_store import InMemoryDocumentStore
+from localsearch_server.tokenizer import NaiveTokenizer
+from localsearch_server.bm25 import BM25
+from localsearch_server.service import LocalsearchService
+
 documents = {}  # Raw documents
 
 tf_index = {}  # Maps from doc_id to tf_dict
@@ -104,30 +111,29 @@ def query(query_str):
 
 
 def main():
-    nltk.download('popular')
-    nltk.download('stopwords')
+    tokenizer = NaiveTokenizer()
+    tf_index = InMemoryTFIndex()
+    tf_inverted_index = InMemoryTFInvertedIndex()
+    document_store = InMemoryDocumentStore()
+    bm25 = BM25(tf_index, tf_inverted_index, document_store)
 
-    # Insert N documents
-    insert_document(1, "Hello world. It's a great day")
-    insert_document(2, "Goodbye, cruel world")
-    insert_document(3, "It's a great day")
-    insert_document(4, "Lets not go to the beach today")
-    insert_document(5, "Looking like rain today")
-    insert_document(6, "Goodbye yall, I'll see you tomorrow.")
+    service = LocalsearchService(
+        tokenizer=tokenizer,
+        tf_index=tf_index,
+        tf_inverted_index=tf_inverted_index,
+        document_store=document_store,
+        bm25=bm25,
+    )
 
-    # preprocess()
+    service.insert_document(1, "Hello world")
+    service.insert_document(2, "Goodbye, cruel world")
+    service.insert_document(3, "The world says hello")
 
-    print('documents', documents)
-    print('tf_index', tf_index)
-    print('tf_inverted_index', tf_inverted_index)
-    print('avg_doc_length', avg_doc_length)
-    print('idf_index', idf_index)
+    print('docs', document_store.documents)
+    print('tf', tf_index.index)
+    print('ft', tf_inverted_index.index)
 
-
-    print('great day', query("great day"))
-    print('tomorrow', query("tomorrow"))
-    print('world', query("world"))
-
+    res = service.query("hello")
 if __name__ == "__main__":
     main()
 

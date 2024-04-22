@@ -41,7 +41,6 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
         Insert a document into the store, and the index
         """
         logging.info(f'->REQ InsertDocument:{request.request_id}')
-
         content = b64decode(request.contents_base64)
 
         logging.info(f'Saving document: {request.document_id}')

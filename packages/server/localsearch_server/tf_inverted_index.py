@@ -3,9 +3,9 @@ import json
 import numpy as np
 from abc import ABC, abstractmethod
 
-class TFIndex(ABC):
+class TFInvertedIndex(ABC):
     """
-    An index for documetn tf_dicts
+    An inverted index mapping from terms, to term frequencies in documents
     """
 
     @abstractmethod
@@ -16,26 +16,41 @@ class TFIndex(ABC):
         pass
 
     @abstractmethod
-    def get_tf_dict(self, document_id):
+    def get_document_tfs(self, term):
         """
-        Insert term frequencies for a document
+        Returns documents containing this term, and the frequency of the term in each document
         """
         pass
 
-class InMemoryTFIndex(TFIndex):
+    @abstractmethod
+    def list_terms(self):
+        """
+        Return all terms
+        """
+        pass
+
+class InMemoryTFInvertedIndex(TFInvertedIndex):
     """
-    Implementation of TFIndex using a simple in-memory dict
+    Implementation of TFInvertedIndex using a simple in-memory dict
     """
     def __init__(self):
         self.index = {}
-    
-    def insert_tf_dict(self, document_id, tf_dict):
-        self.index[document_id] = tf_dict
-    
-    def get_tf_dict(self, document_id):
-        return self.index[document_id]
 
-# class FileTFIndex(TFIndex):
+    def insert_tf_dict(self, document_id, tf_dict):
+        for term in tf_dict:
+            if term not in self.index:
+                self.index[term] = {}
+            self.index[term][document_id] = tf_dict[term]
+    
+    def get_document_tfs(self, term):
+        if term not in self.index:
+            return {}
+        return self.index[term]
+
+    def list_terms(self):
+        return list(self.index.keys())
+
+# class FileTFIndex(TFInvertedIndex):
 #     """
 #     Implements TFIndex using a single file on the local filesystem
 
