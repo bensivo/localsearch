@@ -3,27 +3,24 @@ Features:
 [x] Tokenize Document on Insert
 [x] Create TF inverted index, update on Insert
 [x] Query documents, using basic euclidean distance of TF vectors
-[ ] Query documents, using BM25 ranking function
-[ ] GRPC Gateway, so we can use HTTP to hit the grpc service
-[ ] Basic UI for managing docs, querying docs
+[x] Query documents, using BM25 ranking function
+[ ] Web UI for Inserting docs, querying docs
 [ ] Performance / Stress testing
+[ ] GRPC Gateway, so we can use HTTP to hit the grpc service
 [x] E2E Test suite
 [x] Run server and e2e test suite in 2 docker containers
 [ ] Cranfield test suite, for evaluating doc ranking performance
 [ ] Design docs
 [ ] Write blog post describing the python monorepo setup
 [ ] Write blog post describing the IR setup
+[ ] Async API for Index(), get progress
 
 Tech Debt:
-[ ] refactoring: implement service layer, so we can invoke core functions directly without a GRPC controller
-[ ] refactoring: renamae grpc-python to localsearch-grpc
-[ ] refactoring: use np.array for all vectors, instead of python lists
-[ ] tf_index: implement better persistence, not just 1 giant JSON file
-[ ] tf_index: batch writing results to file
-[ ] tokenizer: try different options, different datasets, etc.
-    - ngram tokenizers, so not entire word has to match
-    - tokenizers for source code
-    - different stemming algorithms
-
-Additional Features:
-[ ] InsertMany documents at once
+[x] refactoring: implement service layer, so we can invoke core functions directly without a GRPC controller
+[x] refactoring: renamae grpc-python to localsearch-grpc
+[x] refactoring: use np.array for all vectors, instead of python lists
+[ ] tf-index: persistence with filesystem
+[ ] tf-inverted-index: persistence with filesystem
+[ ] document-store: persistence with filesystem
+[ ] tokenizer: ngram tokenizer
+[ ] tokenizer: source-code tokenizer
