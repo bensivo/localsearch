@@ -7,6 +7,8 @@ service Localsearch{
 
     rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {}
 
+    rpc Index(IndexRequest) returns (IndexResponse) {}
+
     rpc Query(QueryRequest) returns (QueryResponse) {}
 }
 
@@ -41,6 +43,15 @@ message QueryResponse {
     string request_id = 1;
     uint32 response_code = 2;
     repeated DocumentScore document_scores = 3;
+}
+
+message IndexRequest {
+    string request_id = 1;
+}
+
+message IndexResponse {
+    string request_id = 1;
+    uint32 response_code = 2;
 }
 
 message DocumentScore {

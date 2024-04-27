@@ -5,11 +5,11 @@ from abc import ABC, abstractmethod
 
 class TFIndex(ABC):
     """
-    An index for documetn tf_dicts
+    Stores tf_dict for each document
     """
 
     @abstractmethod
-    def insert_tf_dict(self, document_id, tf_dict):
+    def insert_document(self, document_id, tf_dict):
         """
         Insert term frequencies for a document
         """
@@ -29,7 +29,7 @@ class InMemoryTFIndex(TFIndex):
     def __init__(self):
         self.index = {}
     
-    def insert_tf_dict(self, document_id, tf_dict):
+    def insert_document(self, document_id, tf_dict):
         self.index[document_id] = tf_dict
     
     def get_tf_dict(self, document_id):
@@ -64,7 +64,7 @@ class InMemoryTFIndex(TFIndex):
 #             with open(self.filepath, 'w') as file:
 #                 json.dump({}, file)
 
-#     def insert_tf_dict(self, document_id, tf_dict):
+#     def insert_document(self, document_id, tf_dict):
 #         for term, term_frequency in tf_dict.items():
 #             if term not in self.index:
 #                 self.index[term] = {}

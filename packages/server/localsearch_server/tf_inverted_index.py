@@ -5,50 +5,70 @@ from abc import ABC, abstractmethod
 
 class TFInvertedIndex(ABC):
     """
-    An inverted index mapping from terms, to term frequencies in documents
+    Inverted index of document term frequencies. 
+    
+    Contains 2 separate data-structures:
+        - document_frequencies: Maps from a term, to the number of docs that contain that term
+        - postings: Maps from a term, to a list of (document_id, term_frequency) tuples
+
+    Reading: https://nlp.stanford.edu/IR-book/html/htmledition/a-first-take-at-building-an-inverted-index-1.html
     """
 
     @abstractmethod
-    def insert_tf_dict(self, document_id, tf_dict):
+    def insert_document(self, document_id, tf_dict):
         """
         Insert term frequencies for a document
         """
         pass
 
     @abstractmethod
-    def get_document_tfs(self, term):
+    def get_terms(self):
+        """
+        Return all terms
+        """
+        pass
+
+    @abstractmethod
+    def get_document_frequency(self, term):
         """
         Returns documents containing this term, and the frequency of the term in each document
         """
         pass
 
     @abstractmethod
-    def list_terms(self):
+    def get_postings(self, term):
         """
-        Return all terms
+        Returns documents containing this term, and the frequency of the term in each document
         """
         pass
 
+
 class InMemoryTFInvertedIndex(TFInvertedIndex):
     """
-    Implementation of TFInvertedIndex using a simple in-memory dict
+    Implementation of TFInvertedIndex using in-memory data structures
     """
     def __init__(self):
-        self.index = {}
+        self.document_frequencies = {}
+        self.postings = {}
 
-    def insert_tf_dict(self, document_id, tf_dict):
+    def insert_document(self, document_id, tf_dict):
         for term in tf_dict:
-            if term not in self.index:
-                self.index[term] = {}
-            self.index[term][document_id] = tf_dict[term]
-    
-    def get_document_tfs(self, term):
-        if term not in self.index:
-            return {}
-        return self.index[term]
+            if term not in self.document_frequencies:
+                self.document_frequencies[term] = 0
+            self.document_frequencies[term] += 1
 
-    def list_terms(self):
-        return list(self.index.keys())
+            if term not in self.postings:
+                self.postings[term] = []
+            self.postings[term].append((document_id, tf_dict[term]))
+
+    def get_terms(self):
+        return list(self.document_frequencies.keys())
+    
+    def get_document_frequency(self, term):
+        return self.document_frequencies[term]
+    
+    def get_postings(self, term):
+        return self.postings[term]
 
 # class FileTFIndex(TFInvertedIndex):
 #     """
@@ -79,7 +99,7 @@ class InMemoryTFInvertedIndex(TFInvertedIndex):
 #             with open(self.filepath, 'w') as file:
 #                 json.dump({}, file)
 
-#     def insert_tf_dict(self, document_id, tf_dict):
+#     def insert_document_document(self, document_id, tf_dict):
 #         for term, term_frequency in tf_dict.items():
 #             if term not in self.index:
 #                 self.index[term] = {}

@@ -1,0 +1,27 @@
+version: '3.4'
+
+includes:
+  grpc: 
+    taskfile: ../grpc/Taskfile.yml
+    dir: ../grpc
+    internal: true
+  server: 
+    taskfile: ../server/Taskfile.yml
+    dir: ../server
+    internal: true
+
+tasks:
+  install:
+    cmds:
+      - task: grpc:build
+      - rm -rf ./deps && mkdir ./deps
+      - cp ../../dist/localsearch_grpc-0.0.1-py3-none-any.whl ./deps
+      - poetry install
+
+  insert:
+    cmds:
+      - poetry run python ./localsearch_eval/insert.py
+
+  query:
+    cmds:
+      - poetry run python ./localsearch_eval/query.py

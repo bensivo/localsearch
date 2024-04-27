@@ -9,7 +9,7 @@ from localsearch_grpc import localsearch_pb2_grpc
 fake = Faker()
 
 def connect_grpc():
-    host = os.environ['LOCALSEARCH_SERVER']
+    host = os.environ.get('LOCALSEARCH_SERVER', 'localhost')
     channel = grpc.insecure_channel(f'{host}:50051')
     stub = localsearch_pb2_grpc.LocalsearchStub(channel)
     return stub
@@ -43,6 +43,13 @@ def test_query():
 
     insert_document(stub, doc1_id, doc1_contents)
     insert_document(stub, doc2_id, doc2_contents)
+
+    # Given we have called index()
+    res = stub.Index(localsearch_pb2.IndexRequest(
+        request_id = str(uuid.uuid4())
+    ))
+    print(res.response_code)
+
 
     # When we query, with the text from document 1
     res = stub.Query(localsearch_pb2.QueryRequest(

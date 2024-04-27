@@ -59,6 +59,20 @@ class QueryResponse(_message.Message):
     document_scores: _containers.RepeatedCompositeFieldContainer[DocumentScore]
     def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ..., document_scores: _Optional[_Iterable[_Union[DocumentScore, _Mapping]]] = ...) -> None: ...
 
+class IndexRequest(_message.Message):
+    __slots__ = ("request_id",)
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    def __init__(self, request_id: _Optional[str] = ...) -> None: ...
+
+class IndexResponse(_message.Message):
+    __slots__ = ("request_id", "response_code")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    RESPONSE_CODE_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    response_code: int
+    def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ...) -> None: ...
+
 class DocumentScore(_message.Message):
     __slots__ = ("document_id", "score")
     DOCUMENT_ID_FIELD_NUMBER: _ClassVar[int]

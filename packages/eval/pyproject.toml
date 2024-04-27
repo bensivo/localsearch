@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "localsearch_server"
-version = "0.0.1"
+name = "eval"
+version = "0.1.0"
 description = ""
 authors = ["Ben Sivoravong <bensivo@gmail.com>"]
 readme = "README.md"
@@ -9,10 +9,13 @@ readme = "README.md"
 python = "^3.10"
 asyncio = "^3.4.3"
 grpcio = "^1.62.1"
-nltk = "^3.8.1"
-numpy = "^1.26.4"
 protobuf = "^4.25.3"
+pytest = "^8.1.1"
+faker = "^24.9.0"
 localsearch_grpc = {file = "./deps/localsearch_grpc-0.0.1-py3-none-any.whl"}
+pandas = "^2.2.2"
+pyarrow = "^16.0.0"
+tqdm = "^4.66.2"
 
 [build-system]
 requires = ["poetry-core"]

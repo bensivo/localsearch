@@ -12,7 +12,7 @@ tasks:
       - task: grpc:build
       - rm -rf ./deps
       - mkdir ./deps
-      - cp ../../dist/localsearch_grpc-0.0.0-py3-none-any.whl ./deps
+      - cp ../../dist/localsearch_grpc-0.0.1-py3-none-any.whl ./deps
       - poetry install
 
   run:
