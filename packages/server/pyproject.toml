@@ -12,7 +12,7 @@ grpcio = "^1.62.1"
 nltk = "^3.8.1"
 numpy = "^1.26.4"
 protobuf = "^4.25.3"
-localsearch_grpc = {file = "./deps/localsearch_grpc-0.0.1-py3-none-any.whl"}
+localsearch-grpc = {path = "../grpc", develop = true}
 
 [build-system]
 requires = ["poetry-core"]

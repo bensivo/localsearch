@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "localsearch_grpc"
+name = "localsearch-grpc"
 version = "0.0.1"
 description = ""
 authors = ["Ben Sivoravong <bensivo@gmail.com>"]

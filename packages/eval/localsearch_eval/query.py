@@ -21,11 +21,7 @@ def main():
     ))
 
     for ds in res.document_scores:
-        get_doc_res = stub.GetDocument(localsearch_pb2.GetDocumentRequest(
-            request_id = str(uuid.uuid4()),
-            document_id = ds.document_id
-        ))
-        print(f'  {ds.document_id} - {ds.score} - "{base64.b64decode(get_doc_res.contents_base64).decode("utf-8")}"')
+        print(f'  {ds.document_id} - {ds.score}')
 
 if __name__ == '__main__':
     main()

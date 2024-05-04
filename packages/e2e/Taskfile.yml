@@ -13,28 +13,9 @@ includes:
 tasks:
   install:
     cmds:
-      - task: grpc:build
-      - rm -rf ./deps && mkdir ./deps
-      - cp ../../dist/localsearch_grpc-0.0.1-py3-none-any.whl ./deps
+      - task: grpc:generate
       - poetry install
 
   run:
     cmds:
       - poetry run pytest
-
-  stress:
-    cmds:
-      - poetry run python ./localsearch_e2e/stress_test.py
-
-  docker:
-    cmds:
-      - task: install
-      - docker run -d --net localsearch --hostname localsearch-server --name localsearch-server localsearch-server
-      - docker build -t localsearch-e2e .
-
-  docker-run:
-    cmds:
-      - task: server:docker
-      - task: docker
-      - docker run --net localsearch -e LOCALSEARCH_SERVER=localsearch-server --name localsearch-e2e localsearch-e2e 
-      - docker rm -f localsearch-server localsearch-e2e

@@ -15,8 +15,4 @@ tasks:
       # In our monorepo, we want this generated code to be found under the module "localsearch_grpc", so we must rewrite the generated import statements to conform to that.
       # - sed -i ''  's/import localsearch_pb2 as localsearch__pb2/from localsearch_grpc import localsearch_pb2 as localsearch__pb2/g' ./localsearch_grpc/localsearch_pb2_grpc.py
       - sed -i '' 's/import \(.*\) as/from . import \1 as/' ./localsearch_grpc/localsearch_pb2_grpc.py
-  
-  build:
-    cmds:
-      - task: generate
-      - poetry build -o ../../dist
+
