@@ -16,3 +16,7 @@ tasks:
       # - sed -i ''  's/import localsearch_pb2 as localsearch__pb2/from localsearch_grpc import localsearch_pb2 as localsearch__pb2/g' ./localsearch_grpc/localsearch_pb2_grpc.py
       - sed -i '' 's/import \(.*\) as/from . import \1 as/' ./localsearch_grpc/localsearch_pb2_grpc.py
 
+
+  build:
+    cmds:
+      - poetry build

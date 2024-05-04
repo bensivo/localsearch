@@ -15,3 +15,19 @@ tasks:
   run:
     cmds:
       - poetry run python -m localsearch_server.main
+
+  build:
+    cmds:
+      - task: grpc:build
+      - cp ../grpc/dist/* ./dist/
+      - poetry build
+
+  docker-build:
+    cmds:
+      - task: build
+      - docker build -t localsearch-server .
+
+  docker-run:
+    cmds:
+      - task: docker-build
+      - docker run -p 50051:50051 localsearch-server

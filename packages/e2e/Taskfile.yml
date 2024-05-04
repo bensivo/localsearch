@@ -5,10 +5,6 @@ includes:
     taskfile: ../grpc/Taskfile.yml
     dir: ../grpc
     internal: true
-  server: 
-    taskfile: ../server/Taskfile.yml
-    dir: ../server
-    internal: true
 
 tasks:
   install:
