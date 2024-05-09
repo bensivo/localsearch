@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Localsearch</title>
+  </head>
+  <style>
+
+    .insert-document-form * {
+      display: block;
+    }
+
+  </style>
+  <body>
+    <h1>Documents</h1>
+    <a href="/documents/insert">Insert document</a>
+
+    {{ range $doc := .Documents }}
+    <div>
+      <h2>{{ $doc.Title }}</h2>
+      <p>{{ $doc.Content }}</p>
+    </div>
+    {{ end }}
+  </body>
+
+</html>

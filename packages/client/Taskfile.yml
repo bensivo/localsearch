@@ -1,0 +1,22 @@
+version: '3.4'
+
+includes:
+  grpc-go: 
+    taskfile: ../grpc-go/Taskfile.yml
+    dir: ../grpc-go
+    internal: true
+
+tasks:
+  install:
+    cmds:
+      - task: grpc-go:generate
+      - go install github.com/cosmtrek/air@latest
+      - go mod tidy
+
+  dev:
+    cmds:
+      - air
+
+  run:
+    cmds:
+      - go run main.go

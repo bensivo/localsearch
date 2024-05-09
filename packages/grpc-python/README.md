@@ -32,4 +32,4 @@ stub.InsertDocument(localsearch_pb2.InsertDocumentRequest(
 
 Specific usage for this library can be found in the server/ and e2e/ packages.
 
-More general usage docs on geneated grpc code can be found here: https://grpc.io/docs/languages/python/basics/
+More general usage docs on geneated grpc code can be found here: https://grpc-python.io/docs/languages/python/basics/

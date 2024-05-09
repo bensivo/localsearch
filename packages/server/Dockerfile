@@ -9,8 +9,8 @@ COPY ./dist/* /dist/
 # Install the grpc dependency
 # 
 # Using .tar.gz files instead of .whl files preserves our local editable installs, and makes it easier to work between multiple platforms
-RUN tar -xvzf /dist/localsearch_grpc-0.0.1.tar.gz  -C /app && mv /app/localsearch_grpc-0.0.1 /app/grpc
-RUN cd /app/grpc && poetry install
+RUN tar -xvzf /dist/localsearch_grpc-0.0.1.tar.gz  -C /app && mv /app/localsearch_grpc-0.0.1 /app/grpc-python
+RUN cd /app/grpc-python && poetry install
 
 # Install the server
 # 

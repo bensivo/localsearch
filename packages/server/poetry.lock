@@ -122,7 +122,7 @@ protobuf = "^4.25.3"
 
 [package.source]
 type = "directory"
-url = "../grpc"
+url = "../grpc-python"
 
 [[package]]
 name = "nltk"
@@ -325,4 +325,4 @@ telegram = ["requests"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "6d8c36cf192b0cd8990bc83dc90cb026262a4e55c228f50fdb5bb0e542591719"
+content-hash = "2d85674f93ef118dbb19f3130b77086dab4ccc12f152f1348570c47b957e49e8"

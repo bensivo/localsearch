@@ -2,8 +2,8 @@ version: '3.4'
 
 includes:
   grpc: 
-    taskfile: ../grpc/Taskfile.yml
-    dir: ../grpc
+    taskfile: ../grpc-python/Taskfile.yml
+    dir: ../grpc-python
     internal: true
   server: 
     taskfile: ../server/Taskfile.yml

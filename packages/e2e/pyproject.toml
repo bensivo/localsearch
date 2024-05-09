@@ -12,8 +12,7 @@ grpcio = "^1.62.1"
 protobuf = "^4.25.3"
 pytest = "^8.1.1"
 faker = "^24.9.0"
-localsearch-grpc = {path = "../grpc", develop = true}
-
+localsearch-grpc = {path = "../grpc-python", develop = true}
 
 
 [build-system]

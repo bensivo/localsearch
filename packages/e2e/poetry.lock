@@ -136,7 +136,7 @@ protobuf = "^4.25.3"
 
 [package.source]
 type = "directory"
-url = "../grpc"
+url = "../grpc-python"
 
 [[package]]
 name = "packaging"
@@ -245,4 +245,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "8ab73dfb4c44bff80abf2e436e110c64b63a2e206acd16daba760ea0a5ddf015"
+content-hash = "9076f7759599dce99aa60cf4fe4bb388764b3390db48d8ce68125da75a3259d9"
