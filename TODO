@@ -4,7 +4,10 @@ Features:
 [x] Create TF inverted index, update on Insert
 [x] Query documents, using basic euclidean distance of TF vectors
 [x] Query documents, using BM25 ranking function
-[ ] Web UI for Inserting docs, querying docs
+[ ] Browse docs through the UI, see docs in table, then click on one to view its contents
+    [ ] GRPC call for "list docs"
+[ ] Initiate Indexing through the UI
+[ ] Query docs through the UI
 [ ] Performance / Stress testing
 [ ] GRPC Gateway, so we can use HTTP to hit the grpc service
 [x] E2E Test suite

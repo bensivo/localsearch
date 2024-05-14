@@ -9,17 +9,38 @@
       display: block;
     }
 
+    table {
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table th  { 
+      text-align: left;
+    }
+    table td  { 
+      border-bottom: solid 1px #ccc;
+      padding: .1rem .1rem;
+    }
+
   </style>
   <body>
     <h1>Documents</h1>
     <a href="/documents/insert">Insert document</a>
 
-    {{ range $doc := .Documents }}
-    <div>
-      <h2>{{ $doc.Title }}</h2>
-      <p>{{ $doc.Content }}</p>
-    </div>
-    {{ end }}
+    <table>
+      <thead>
+        <th>Document Title</th>
+        <th>Document Length</th>
+      </thead>
+      <tbody>
+        {{ range $doc := .Documents }}
+        <tr>
+          <td>{{ $doc.Title }}</td>
+          <td>{{ len $doc.Content }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
   </body>
 
 </html>
