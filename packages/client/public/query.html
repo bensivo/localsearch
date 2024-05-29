@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Localsearch</title>
+  </head>
+  <style>
+
+    .query-document-form {
+      max-width: 50rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .query-document-form * {
+      margin-top: 1rem;
+      display: block;
+    }
+
+    .query-document-form input {
+        padding: .5rem;
+        margin: .5rem;
+    }
+
+  </style>
+  <body>
+    <h1>Query documents</h1>
+    <a href="/documents">Documents</a>
+
+    <form class="query-document-form" action="/documents/query/submit" method="POST">
+      <label for="title">Query</label>
+      <input type="text" id="query" name="query" autocomplete="off"/>
+      <input type="submit" value="Submit"/>
+    </form>
+  </body>
+
+</html>

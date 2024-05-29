@@ -42,6 +42,36 @@ def test_insert_document():
     assert res.request_id == request_id
     assert res.response_code == 0
 
+def test_list_documents():
+    # Given we are connected to the GRPC server
+    stub = connect_grpc()
+    
+    # Given we have inserted a document
+    request_id = str(uuid.uuid4())
+    document_id, contents_base64 = generate_document()
+    res = stub.InsertDocument(localsearch_pb2.InsertDocumentRequest(
+        request_id = request_id,
+        document_id = document_id,
+        contents_base64 = contents_base64
+    ))
+
+    # When we call ListDocuments
+    res = stub.ListDocuments(localsearch_pb2.ListDocumentsRequest(
+        request_id = request_id,
+        limit = 100,
+        offset = 0,
+    ))
+
+    documents = res.documents
+    document_ids = [doc.document_id for doc in documents]
+
+    # Then we get our document_id back
+    assert document_id in document_ids
+
+    # Then we get a success response
+    assert res.request_id == request_id
+    assert res.response_code == 0
+
 def test_get_document():
     # Given we are connected to the GRPC server
     stub = connect_grpc()

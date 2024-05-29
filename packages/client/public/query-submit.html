@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Localsearch</title>
+  </head>
+  <style>
+
+    .insert-document-form * {
+      display: block;
+    }
+
+    .document-score{
+        margin-top: 1rem;
+        background-color: lightgray;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        width: 20rem;
+    }
+
+    .document-score p {
+        margin: 0;
+    }
+
+    .make-another-query {
+        display: block;
+        margin-top: 1rem;
+    }
+
+  </style>
+  <body>
+    <h1>Query documents</h1>
+    <a href="/documents">Documents</a>
+
+    {{range $val := .DocumentScores}}
+    <div class="document-score">
+        <p>Document: {{$val.DocumentId}}</p>
+        <p>Score: {{$val.Score}}</p>
+    </div>
+    {{end}}
+
+    <a class="make-another-query" href="/documents/query">Make another Query</a>
+  </body>
+
+</html>

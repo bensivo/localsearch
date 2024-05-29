@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11localsearch.proto\x12\x0blocalsearch\"Y\n\x15InsertDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"C\n\x16InsertDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\"=\n\x12GetDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\"Y\n\x13GetDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"1\n\x0cQueryRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\"o\n\rQueryResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x33\n\x0f\x64ocument_scores\x18\x03 \x03(\x0b\x32\x1a.localsearch.DocumentScore\"\"\n\x0cIndexRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\":\n\rIndexResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\"3\n\rDocumentScore\x12\x13\n\x0b\x64ocument_id\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\x32\xc2\x02\n\x0bLocalsearch\x12[\n\x0eInsertDocument\x12\".localsearch.InsertDocumentRequest\x1a#.localsearch.InsertDocumentResponse\"\x00\x12R\n\x0bGetDocument\x12\x1f.localsearch.GetDocumentRequest\x1a .localsearch.GetDocumentResponse\"\x00\x12@\n\x05Index\x12\x19.localsearch.IndexRequest\x1a\x1a.localsearch.IndexResponse\"\x00\x12@\n\x05Query\x12\x19.localsearch.QueryRequest\x1a\x1a.localsearch.QueryResponse\"\x00\x42\x1bZ\x19localsearch-grpc/pkg/grpcb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11localsearch.proto\x12\x0blocalsearch\"Y\n\x15InsertDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"C\n\x16InsertDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\"=\n\x12GetDocumentRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x13\n\x0b\x64ocument_id\x18\x02 \x01(\t\"Y\n\x13GetDocumentResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x17\n\x0f\x63ontents_base64\x18\x03 \x01(\t\"I\n\x14ListDocumentsRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\r\n\x05limit\x18\x02 \x01(\x04\x12\x0e\n\x06offset\x18\x03 \x01(\x04\"t\n\x15ListDocumentsResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x30\n\tdocuments\x18\x03 \x03(\x0b\x32\x1d.localsearch.DocumentMetadata\"\'\n\x10\x44ocumentMetadata\x12\x13\n\x0b\x64ocument_id\x18\x01 \x01(\t\"1\n\x0cQueryRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\"o\n\rQueryResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\x12\x33\n\x0f\x64ocument_scores\x18\x03 \x03(\x0b\x32\x1a.localsearch.DocumentScore\"\"\n\x0cIndexRequest\x12\x12\n\nrequest_id\x18\x01 \x01(\t\":\n\rIndexResponse\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x15\n\rresponse_code\x18\x02 \x01(\r\"3\n\rDocumentScore\x12\x13\n\x0b\x64ocument_id\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\x32\x9c\x03\n\x0bLocalsearch\x12[\n\x0eInsertDocument\x12\".localsearch.InsertDocumentRequest\x1a#.localsearch.InsertDocumentResponse\"\x00\x12R\n\x0bGetDocument\x12\x1f.localsearch.GetDocumentRequest\x1a .localsearch.GetDocumentResponse\"\x00\x12X\n\rListDocuments\x12!.localsearch.ListDocumentsRequest\x1a\".localsearch.ListDocumentsResponse\"\x00\x12@\n\x05Index\x12\x19.localsearch.IndexRequest\x1a\x1a.localsearch.IndexResponse\"\x00\x12@\n\x05Query\x12\x19.localsearch.QueryRequest\x1a\x1a.localsearch.QueryResponse\"\x00\x42\x1bZ\x19localsearch-grpc/pkg/grpcb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -30,16 +30,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_GETDOCUMENTREQUEST']._serialized_end=255
   _globals['_GETDOCUMENTRESPONSE']._serialized_start=257
   _globals['_GETDOCUMENTRESPONSE']._serialized_end=346
-  _globals['_QUERYREQUEST']._serialized_start=348
-  _globals['_QUERYREQUEST']._serialized_end=397
-  _globals['_QUERYRESPONSE']._serialized_start=399
-  _globals['_QUERYRESPONSE']._serialized_end=510
-  _globals['_INDEXREQUEST']._serialized_start=512
-  _globals['_INDEXREQUEST']._serialized_end=546
-  _globals['_INDEXRESPONSE']._serialized_start=548
-  _globals['_INDEXRESPONSE']._serialized_end=606
-  _globals['_DOCUMENTSCORE']._serialized_start=608
-  _globals['_DOCUMENTSCORE']._serialized_end=659
-  _globals['_LOCALSEARCH']._serialized_start=662
-  _globals['_LOCALSEARCH']._serialized_end=984
+  _globals['_LISTDOCUMENTSREQUEST']._serialized_start=348
+  _globals['_LISTDOCUMENTSREQUEST']._serialized_end=421
+  _globals['_LISTDOCUMENTSRESPONSE']._serialized_start=423
+  _globals['_LISTDOCUMENTSRESPONSE']._serialized_end=539
+  _globals['_DOCUMENTMETADATA']._serialized_start=541
+  _globals['_DOCUMENTMETADATA']._serialized_end=580
+  _globals['_QUERYREQUEST']._serialized_start=582
+  _globals['_QUERYREQUEST']._serialized_end=631
+  _globals['_QUERYRESPONSE']._serialized_start=633
+  _globals['_QUERYRESPONSE']._serialized_end=744
+  _globals['_INDEXREQUEST']._serialized_start=746
+  _globals['_INDEXREQUEST']._serialized_end=780
+  _globals['_INDEXRESPONSE']._serialized_start=782
+  _globals['_INDEXRESPONSE']._serialized_end=840
+  _globals['_DOCUMENTSCORE']._serialized_start=842
+  _globals['_DOCUMENTSCORE']._serialized_end=893
+  _globals['_LOCALSEARCH']._serialized_start=896
+  _globals['_LOCALSEARCH']._serialized_end=1308
 # @@protoc_insertion_point(module_scope)

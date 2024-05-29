@@ -21,6 +21,22 @@ class LocalsearchService:
         Insert a document into the store, and index it for querying
         """
         self.document_store.insert_document(document_id, content)
+    
+    def list_documents(self, limit, offset):
+        """
+        Return a list of all documents
+
+        Args:
+            limit (int): The maximum number of documents to return. Use 0 to indicate no limit.
+            offset (int): The offset to start returning documents from
+        """
+        document_ids = self.document_store.list_documents()
+        document_ids.sort()
+
+        if limit == -1:
+            return document_ids[offset:]
+
+        return document_ids[offset:offset+limit]
 
 
     def get_document(self, document_id):

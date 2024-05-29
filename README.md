@@ -8,3 +8,18 @@ References and tutorials I used when buildling this application:
 - GRPC server, client setup: https://grpc-python.io/docs/languages/python/basics/
 - Local package installations in python monorepos: https://pip.pypa.io/en/stable/topics/local-project-installs/
 - Fake data generation for testing: https://github.com/joke2k/faker?tab=readme-ov-file
+
+## Development
+
+Run the application:
+
+Open 2 terminals, and run
+```
+cd packages/server
+task install
+task run
+
+cd packages/client
+task install
+task run
+```

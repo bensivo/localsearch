@@ -41,6 +41,32 @@ class GetDocumentResponse(_message.Message):
     contents_base64: str
     def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ..., contents_base64: _Optional[str] = ...) -> None: ...
 
+class ListDocumentsRequest(_message.Message):
+    __slots__ = ("request_id", "limit", "offset")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    LIMIT_FIELD_NUMBER: _ClassVar[int]
+    OFFSET_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    limit: int
+    offset: int
+    def __init__(self, request_id: _Optional[str] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ...) -> None: ...
+
+class ListDocumentsResponse(_message.Message):
+    __slots__ = ("request_id", "response_code", "documents")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    RESPONSE_CODE_FIELD_NUMBER: _ClassVar[int]
+    DOCUMENTS_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    response_code: int
+    documents: _containers.RepeatedCompositeFieldContainer[DocumentMetadata]
+    def __init__(self, request_id: _Optional[str] = ..., response_code: _Optional[int] = ..., documents: _Optional[_Iterable[_Union[DocumentMetadata, _Mapping]]] = ...) -> None: ...
+
+class DocumentMetadata(_message.Message):
+    __slots__ = ("document_id",)
+    DOCUMENT_ID_FIELD_NUMBER: _ClassVar[int]
+    document_id: str
+    def __init__(self, document_id: _Optional[str] = ...) -> None: ...
+
 class QueryRequest(_message.Message):
     __slots__ = ("request_id", "query")
     REQUEST_ID_FIELD_NUMBER: _ClassVar[int]

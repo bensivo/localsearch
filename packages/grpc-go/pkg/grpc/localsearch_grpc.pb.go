@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type LocalsearchClient interface {
 	InsertDocument(ctx context.Context, in *InsertDocumentRequest, opts ...grpc.CallOption) (*InsertDocumentResponse, error)
 	GetDocument(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error)
+	ListDocuments(ctx context.Context, in *ListDocumentsRequest, opts ...grpc.CallOption) (*ListDocumentsResponse, error)
 	Index(ctx context.Context, in *IndexRequest, opts ...grpc.CallOption) (*IndexResponse, error)
 	Query(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResponse, error)
 }
@@ -54,6 +55,15 @@ func (c *localsearchClient) GetDocument(ctx context.Context, in *GetDocumentRequ
 	return out, nil
 }
 
+func (c *localsearchClient) ListDocuments(ctx context.Context, in *ListDocumentsRequest, opts ...grpc.CallOption) (*ListDocumentsResponse, error) {
+	out := new(ListDocumentsResponse)
+	err := c.cc.Invoke(ctx, "/localsearch.Localsearch/ListDocuments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *localsearchClient) Index(ctx context.Context, in *IndexRequest, opts ...grpc.CallOption) (*IndexResponse, error) {
 	out := new(IndexResponse)
 	err := c.cc.Invoke(ctx, "/localsearch.Localsearch/Index", in, out, opts...)
@@ -78,6 +88,7 @@ func (c *localsearchClient) Query(ctx context.Context, in *QueryRequest, opts ..
 type LocalsearchServer interface {
 	InsertDocument(context.Context, *InsertDocumentRequest) (*InsertDocumentResponse, error)
 	GetDocument(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error)
+	ListDocuments(context.Context, *ListDocumentsRequest) (*ListDocumentsResponse, error)
 	Index(context.Context, *IndexRequest) (*IndexResponse, error)
 	Query(context.Context, *QueryRequest) (*QueryResponse, error)
 	mustEmbedUnimplementedLocalsearchServer()
@@ -92,6 +103,9 @@ func (UnimplementedLocalsearchServer) InsertDocument(context.Context, *InsertDoc
 }
 func (UnimplementedLocalsearchServer) GetDocument(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDocument not implemented")
+}
+func (UnimplementedLocalsearchServer) ListDocuments(context.Context, *ListDocumentsRequest) (*ListDocumentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDocuments not implemented")
 }
 func (UnimplementedLocalsearchServer) Index(context.Context, *IndexRequest) (*IndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
@@ -148,6 +162,24 @@ func _Localsearch_GetDocument_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Localsearch_ListDocuments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDocumentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocalsearchServer).ListDocuments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/localsearch.Localsearch/ListDocuments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocalsearchServer).ListDocuments(ctx, req.(*ListDocumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Localsearch_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IndexRequest)
 	if err := dec(in); err != nil {
@@ -198,6 +230,10 @@ var Localsearch_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDocument",
 			Handler:    _Localsearch_GetDocument_Handler,
+		},
+		{
+			MethodName: "ListDocuments",
+			Handler:    _Localsearch_ListDocuments_Handler,
 		},
 		{
 			MethodName: "Index",

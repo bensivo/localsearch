@@ -4,8 +4,9 @@
     <title>Localsearch</title>
   </head>
   <style>
+
     a {
-      display: block;
+        display: block;
     }
 
     .insert-document-form * {
@@ -28,22 +29,11 @@
   </style>
   <body>
     <h1>Documents</h1>
-    <a href="/documents/query">Query documents</a>
+    <a href="/documents">Documents</a>
     <a href="/documents/insert">Insert document</a>
 
-    <table>
-      <thead>
-        <th>Document ID</th>
-      </thead>
-      <tbody>
-        {{ range $doc := .Documents }}
-        <tr>
-          <td>
-	    <a href="/documents/{{ $doc.DocumentId }}"> {{ $doc.DocumentId }} </a>
-          </td>
-        </tr>
-        {{ end }}
-      </tbody>
-    </table>
+
+    <h3>Document: {{.Document.DocumentId}}</h3>
+    <pre>{{.Document.DocumentContent}}</pre>
   </body>
 </html>

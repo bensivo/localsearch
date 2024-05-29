@@ -9,7 +9,7 @@ tasks:
     cmds:
       - task: install
       - |
-        protoc --proto_path=../proto \
+        protoc --proto_path=../grpc-proto \
         --go_out=./pkg/grpc --go_opt=paths=source_relative \
         --go-grpc_out=./pkg/grpc --go-grpc_opt=paths=source_relative \
-        ../proto/localsearch.proto
+        ../grpc-proto/localsearch.proto

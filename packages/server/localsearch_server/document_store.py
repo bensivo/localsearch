@@ -37,6 +37,8 @@ class InMemoryDocumentStore(DocumentStore):
         self.documents[document_id] = contents
 
     def get_document(self, document_id):
+        if document_id not in self.documents:
+            return None
         return self.documents[document_id]
 
     def list_documents(self):

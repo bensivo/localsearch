@@ -9,6 +9,8 @@ service Localsearch{
 
     rpc GetDocument(GetDocumentRequest) returns (GetDocumentResponse) {}
 
+    rpc ListDocuments(ListDocumentsRequest) returns (ListDocumentsResponse) {}
+
     rpc Index(IndexRequest) returns (IndexResponse) {}
 
     rpc Query(QueryRequest) returns (QueryResponse) {}
@@ -34,6 +36,22 @@ message GetDocumentResponse {
     string request_id = 1;
     uint32 response_code = 2;
     string contents_base64 = 3;
+}
+
+message ListDocumentsRequest {
+    string request_id = 1;
+    uint64 limit = 2;
+    uint64 offset = 3;
+}
+
+message ListDocumentsResponse {
+    string request_id = 1;
+    uint32 response_code = 2;
+    repeated DocumentMetadata documents = 3;
+}
+
+message DocumentMetadata {
+    string document_id = 1;
 }
 
 message QueryRequest {

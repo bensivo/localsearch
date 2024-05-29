@@ -46,6 +46,26 @@ class GrpcController(Controller, localsearch_pb2_grpc.LocalsearchServicer):
         logging.info(f'<-RES InsertDocument:{res.request_id} - {res.response_code}')
         return res
     
+    async def ListDocuments(self, request, context):
+        """
+        Return a list of all documents
+        """
+        logging.info(f'->REQ ListDocuments:{request.request_id}')
+
+        document_ids = self.service.list_documents(request.limit, request.offset)
+        documents_metadata = [localsearch_pb2.DocumentMetadata(
+            document_id = document_id,
+        ) for document_id in document_ids]
+
+        res = localsearch_pb2.ListDocumentsResponse(
+            request_id = request.request_id,
+            response_code = 0,
+            documents = documents_metadata
+        )
+        logging.info(f'<-RES ListDocuments:{res.request_id} - {res.response_code}')
+        return res
+
+    
     async def GetDocument(self, request, context):
         """
         Get a document from the store, returning the raw document contents as base64
